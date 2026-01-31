@@ -272,50 +272,48 @@
 
   </div>
   
-  <script>
-    setInterval(() => {
-      fetch("/data")
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("temp").innerHTML = data.temp;
-          document.getElementById("hum").innerHTML = data.hum;
+ <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
+<script>
+  // 🔹 Cấu hình Firebase (LẤY TỪ PROJECT CỦA BẠN)
+  const firebaseConfig = {
+    databaseURL: "https://smart-home-esp32-75ece-default-rtdb.asia-southeast1.firebasedatabase.app"
+  };
 
-          const lightSensor = document.getElementById("lightsensor");
-          const lightText   = document.getElementById("ledauto_text");
-          if (data.light == 1) {        // TỐI
-            lightSensor.textContent = "🌚 Tối";
-            lightSensor.classList.remove("light-sang"); 
-            lightSensor.classList.add("light-toi");
-            lightText.textContent   = "💡 ĐÈN BẬT";
-          } 
-          else {                      // SÁNG
-            lightSensor.textContent = "🌞 Sáng";
-            lightSensor.classList.remove("light-toi"); 
-            lightSensor.classList.add("light-sang");
-            lightText.textContent   = "💡 ĐÈN TẮT";
-          }
-          const rainSensor = document.getElementById("rainsensor");
-          const rainText   = document.getElementById("cayphoi");
-          if (data.light == 1) {        // TỐI
-            lightSensor.textContent = "🌧️ Mưa";
-            lightSensor.classList.remove("nang"); 
-            lightSensor.classList.add("mua");
-            lightText.textContent   = "🧺 CẤT ĐỒ";
-          } 
-          else {                      // SÁNG
-            lightSensor.textContent = "☀️ Nắng";
-            lightSensor.classList.remove("mua"); 
-            lightSensor.classList.add("nang");
-            lightText.textContent   = "👕 PHƠI ĐỒ";
-          }
+  // 🔹 Khởi tạo Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
 
+  // 🔹 Lấy dữ liệu realtime
+  const sensorRef = database.ref("sensor");
 
-        })
-        .catch(err => {
-        console.log("FETCH ERROR:", err);
-        });
-    }, 1000);
-  </script>
+  sensorRef.on("value", (snapshot) => {
+    const data = snapshot.val();
+    if (!data) return;
+
+    // Nhiệt độ & độ ẩm
+    document.getElementById("temp").innerHTML = data.temp;
+    document.getElementById("hum").innerHTML  = data.hum;
+
+    const lightSensor = document.getElementById("lightsensor");
+    const lightText   = document.getElementById("ledauto_text");
+
+    console.log("Light =", data.light);
+
+    if (data.light == 1) {        // TỐI
+      lightSensor.textContent = "🌚 Tối";
+      lightSensor.classList.remove("light-sang");
+      lightSensor.classList.add("light-toi");
+      lightText.textContent = "💡 ĐÈN BẬT";
+    } else {                      // SÁNG
+      lightSensor.textContent = "🌞 Sáng";
+      lightSensor.classList.remove("light-toi");
+      lightSensor.classList.add("light-sang");
+      lightText.textContent = "💡 ĐÈN TẮT";
+    }
+  });
+</script>
 </body>
 </html>
+
