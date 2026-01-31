@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -39,160 +40,99 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 25px rgba(56,189,248,0.5);
       }
-    .box {
-      width: 300px;
-      height: 300px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(10px);
-      color: rgb(3, 3, 3);
-      box-shadow: 0 25px 60px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-      position: relative;
-    }
-    .box:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 25px 60px rgba(0,0,0,0.7);
-    }
-    .box-title{
-      font-size: 25px;
-      margin-bottom: 30px;
-    }
-    .sensor{
-      font-size: 18px;
-      font-weight: 600;
-      width: 250px;
-      height: 60px;
-      background: #e5e7eb;
-      color: #111827;
-      border-radius: 14px;
-      position: absolute;
-      left: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-    }
-    #tempbox { top: 90px; }
-    #humbox  { top: 160px; }
-    
-    #lightsensor { top: 90px; }
-    #ledauto_text  { top: 160px;}
-
-    #rainsensor {top: 90px;}
-    #cayphoi  { top: 160px;}
-    
-
-    .light-sang{
-      background: linear-gradient(135deg, #fff7a5, #ffe066);
-      color: #92400e;
-      font-weight: 700;
-      box-shadow:
-        0 0 10px rgba(255, 215, 0, 0.8),
-        0 0 20px rgba(255, 215, 0, 0.6),
-        0 0 35px rgba(255, 215, 0, 0.4);
-      animation: glowSun 1.5s ease-in-out infinite alternate;
-    }
-
-
-    @keyframes glowSun{
-      from{
-        box-shadow:
-          0 0 8px rgba(255, 215, 0, 0.6),
-          0 0 18px rgba(255, 215, 0, 0.4);
+      .box {
+        width: 300px;
+        height: 300px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(10px);
+        color: rgb(3, 3, 3);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        transition: transform 0.3s;
+        position: relative;
       }
-      to{
-        box-shadow:
-          0 0 15px rgba(255, 215, 0, 1),
-          0 0 30px rgba(255, 215, 0, 0.8),
-          0 0 45px rgba(255, 215, 0, 0.6);
+      .box:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.7);
       }
-    }
-    .light-toi{
-        background: linear-gradient(135deg, #6d28d9, #312e81);
-        color: #ede9fe;
+      .box-title{
+        font-size: 25px;
+        margin-bottom: 30px;
+      }
+      .sensor{
+        font-size: 18px;
+        font-weight: 600;
+        width: 250px;
+        height: 60px;
+        background: #e5e7eb;
+        color: #111827;
+        border-radius: 14px;
+        position: absolute;
+        left: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+      }
+      #tempbox { top: 90px; }
+      #humbox  { top: 160px; }
+      #lightsensor { top: 90px; }
+      #ledauto_text  { top: 160px;}
+      
+
+      .light-sang{
+        background: linear-gradient(135deg, #fff7a5, #ffe066);
+        color: #92400e;
         font-weight: 700;
         box-shadow:
-          0 0 10px rgba(168, 85, 247, 0.8),
-          0 0 20px rgba(139, 92, 246, 0.6),
-          0 0 35px rgba(124, 58, 237, 0.4);
-        animation: glowMoon 1.5s ease-in-out infinite alternate;
+          0 0 10px rgba(255, 215, 0, 0.8),
+          0 0 20px rgba(255, 215, 0, 0.6),
+          0 0 35px rgba(255, 215, 0, 0.4);
+        animation: glowSun 1.5s ease-in-out infinite alternate;
       }
 
-      /* hiệu ứng phát sáng tím */
-      @keyframes glowMoon{
+
+      @keyframes glowSun{
         from{
           box-shadow:
-            0 0 8px rgba(168, 85, 247, 0.6),
-            0 0 18px rgba(139, 92, 246, 0.4);
+            0 0 8px rgba(255, 215, 0, 0.6),
+            0 0 18px rgba(255, 215, 0, 0.4);
         }
         to{
           box-shadow:
-            0 0 15px rgba(168, 85, 247, 1),
-            0 0 30px rgba(139, 92, 246, 0.8),
-            0 0 45px rgba(124, 58, 237, 0.6);
+            0 0 15px rgba(255, 215, 0, 1),
+            0 0 30px rgba(255, 215, 0, 0.8),
+            0 0 45px rgba(255, 215, 0, 0.6);
         }
       }
-      .switch-box {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: auto;  
-        width: 220px;
-        height: 30px;
-        padding: 15px;
-        border-radius: 16px;
-        background: #e5e7eb;
-      }
+      .light-toi{
+          background: linear-gradient(135deg, #6d28d9, #312e81);
+          color: #ede9fe;
+          font-weight: 700;
+          box-shadow:
+            0 0 10px rgba(168, 85, 247, 0.8),
+            0 0 20px rgba(139, 92, 246, 0.6),
+            0 0 35px rgba(124, 58, 237, 0.4);
+          animation: glowMoon 1.5s ease-in-out infinite alternate;
+        }
 
-      .switch {
-        position: relative;
-        width: 60px;
-        height: 32px;
-        display: inline-block;
-      }
-
-      .switch input {
-        display: none;
-      }
-
-      .slider {
-        position: absolute;
-        inset: 0;
-        background: #374151;
-        border-radius: 32px;
-        cursor: pointer;
-        transition: 0.4s;
-      }
-
-      .slider::before {
-        content: "";
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        left: 4px;
-        bottom: 4px;
-        background: white;
-        border-radius: 50%;
-        transition: 0.4s;
-      }
-
-      input:checked + .slider {
-        background: linear-gradient(135deg, #1de459, #0f850b);
-        box-shadow: 0 0 20px rgba(8, 145, 31, 0.8);
-      }
-
-      input:checked + .slider::before {
-        transform: translateX(28px);
-      }
-
-      .safe {
-        background: #e5e7eb;
-        color: #065f46;
-      }
+        /* hiệu ứng phát sáng tím */
+        @keyframes glowMoon{
+          from{
+            box-shadow:
+              0 0 8px rgba(168, 85, 247, 0.6),
+              0 0 18px rgba(139, 92, 246, 0.4);
+          }
+          to{
+            box-shadow:
+              0 0 15px rgba(168, 85, 247, 1),
+              0 0 30px rgba(139, 92, 246, 0.8),
+              0 0 45px rgba(124, 58, 237, 0.6);
+          }
+        }
 
       @media (max-width: 768px){
-        .title {
+         .title {
             font-size: 32px;
             margin-top: 20px;
         }
@@ -238,41 +178,17 @@
     </div>
     <div id ="Cambienanhsang" class="box">
       <h4 class="box-title">Ngày🌞/Đêm🌚</h4>
-      <div id="lightsensor" class="sensor sensor light-sang" >
+      <div id="lightsensor" class="sensor light-sang" >
         🌞 Sáng
       </div> 
       <div id="ledauto_text" class="sensor">
         💡 ĐÈN TẮT
       </div>
     </div>
-    
-    <div id ="Cambienmua" class="box">
-      <h4 class="box-title">Mưa🌧️/Nắng☀️</h4>
-      <div id="rainsensor" class="sensor mua" >
-        ☀️ Nắng
-      </div> 
-      <div id="cayphoi" class="sensor">
-        🧺 CẤT ĐỒ
-      </div>
-    </div>
-
-    <div id="LED1" class="box">
-      <h4 class="box-title">💡ĐÈN PHÒNG</h4>
-      <div class="switch-box">
-          <span id="led-text">ĐÈN TẮT</span>
-          <label class="switch">
-            <input type="checkbox" onchange="toggleLed(this)">
-            <span class="slider"></span>
-          </label>
-      </div>
-    </div>
-    
-
-
-
   </div>
   
- <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
@@ -316,4 +232,3 @@
 </script>
 </body>
 </html>
-
