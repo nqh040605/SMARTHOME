@@ -350,6 +350,9 @@ const tiemcan    = document.getElementById("tiemcan");
 const chay       = document.getElementById("chay");
 const canhbao    = document.getElementById("canhbao");
 const firePopup  = document.getElementById("firePopup");
+const ledText = document.getElementById("led-text");
+const fanText = document.getElementById("fan-text");
+
 
 /* ===== NHẬN DỮ LIỆU REALTIME ===== */
 sensorRef.on("value", (snapshot) => {
@@ -430,4 +433,5 @@ function toggleFan(el){
   database.ref("control/fan").set(state);
 }
 </script>
+
 
