@@ -337,6 +337,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const sensorRef = database.ref("sensor");
+const controlRef = database.ref("control");  
 
 /* ===== LẤY PHẦN TỬ HTML ===== */
 const temp       = document.getElementById("temp");
@@ -414,16 +415,19 @@ sensorRef.on("value", (snapshot) => {
 });
 
 /* ===== ĐIỀU KHIỂN ĐÈN ===== */
-const ledText = document.getElementById("led-text");
 function toggleLed(el){
-  ledText.textContent = el.checked ? "💡 ĐÈN BẬT" : "💡 ĐÈN TẮT";
-  fetch("/led?state=" + (el.checked ? 1 : 0));
+  const state = el.checked ? 1 : 0;
+  ledText.textContent = state ? "💡 ĐÈN BẬT" : "💡 ĐÈN TẮT";
+
+  database.ref("control/led").set(state);
 }
 
 /* ===== ĐIỀU KHIỂN QUẠT ===== */
-const fanText = document.getElementById("fan-text");
 function toggleFan(el){
-  fanText.textContent = el.checked ? "🌀 QUẠT BẬT" : "🌀 QUẠT TẮT";
-  fetch("/fan?state=" + (el.checked ? 1 : 0));
+  const state = el.checked ? 1 : 0;
+  fanText.textContent = state ? "🌀 QUẠT BẬT" : "🌀 QUẠT TẮT";
+
+  database.ref("control/fan").set(state);
 }
 </script>
+
