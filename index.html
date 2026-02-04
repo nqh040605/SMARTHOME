@@ -331,7 +331,14 @@ input:checked+.slider::before{
 <script>
 /* ===== CẤU HÌNH FIREBASE ===== */
 const firebaseConfig = {
-  databaseURL: "https://smart-home-esp32-75ece-default-rtdb.asia-southeast1.firebasedatabase.app"
+  apiKey: "AIzaSyDFuJznW3TulRuqRlf_-LNWlPbo79dgJDM",
+  authDomain: "smart-home-esp32-75ece.firebaseapp.com",
+  databaseURL: "https://smart-home-esp32-75ece-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "smart-home-esp32-75ece",
+  storageBucket: "smart-home-esp32-75ece.firebasestorage.app",
+  messagingSenderId: "14606547699",
+  appId: "1:14606547699:web:0354c074150ec6309c1586",
+  measurementId: "G-TDHE4DB58P"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -433,5 +440,6 @@ function toggleFan(el){
   database.ref("control/fan").set(state);
 }
 </script>
+
 
 
