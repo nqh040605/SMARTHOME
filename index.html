@@ -79,7 +79,7 @@ body{
 #tempbox{top:90px}
 #humbox{top:160px}
 #lightsensor{top:90px}
-#ledauto_text{top:160px}
+#led1{top:160px}
 #rainsensor{top:90px}
 #cayphoi{top:160px}
 #tiemcan{top:90px}
@@ -281,7 +281,7 @@ input:checked+.slider::before{
 <div class="box">
   <h4 class="box-title">Ngày🌞/Đêm🌚</h4>
   <div id="lightsensor" class="sensor light-sang">🌞 Sáng</div>
-  <div id="ledauto_text" class="sensor">💡 ĐÈN TẮT</div>
+  <div id="led1" class="sensor">💡 ĐÈN TẮT</div>
 </div>
 
 <div class="box">
@@ -350,7 +350,7 @@ const controlRef = database.ref("control");
 const temp       = document.getElementById("temp");
 const hum        = document.getElementById("hum");
 const lightSensor= document.getElementById("lightsensor");
-const lightText  = document.getElementById("ledauto_text");
+const led1Text  = document.getElementById("led1");
 const rainSensor = document.getElementById("rainsensor");
 const rainText   = document.getElementById("cayphoi");
 const tiemcan    = document.getElementById("tiemcan");
@@ -416,11 +416,11 @@ sensorRef.on("value", (snapshot) => {
     firePopup.classList.remove("active");
   }
 
-  if(data.tiemcan == 1 &&data.light == 1){
-    lightText.textContent = "💡 ĐÈN BẬT";
+  if(data.led1 == 1){
+    led1Text.textContent = "💡 ĐÈN BẬT";
   }
   else{
-    lightText.textContent = "💡 ĐÈN TẮT";
+    led1Text.textContent = "💡 ĐÈN TẮT";
   }
 });
 
@@ -440,6 +440,3 @@ function toggleFan(el){
   database.ref("control/fan").set(state);
 }
 </script>
-
-
-
