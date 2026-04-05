@@ -382,7 +382,7 @@ sensorRef.on("value", (snapshot) => {
   }
 
   /* === MƯA / NẮNG === */
-  if (data.rain == 1) {
+  if (data.rain == 0) {
     rainSensor.textContent = "🌧️ Mưa";
     rainSensor.classList.remove("nang");
     rainSensor.classList.add("mua");
@@ -395,7 +395,7 @@ sensorRef.on("value", (snapshot) => {
   }
 
   /* === PHÁT HIỆN NGƯỜI === */
-  if (data.tiemcan == 1) {
+  if (data.tiemcan == 0) {
     tiemcan.textContent = "👤 Có người";
     tiemcan.className = "sensor co_ng";
   } else {
