@@ -404,7 +404,7 @@ sensorRef.on("value", (snapshot) => {
   }
 
   /* === CẢNH BÁO CHÁY === */
-  if (data.chay == 1) {
+  if (data.chay == 0) {
     chay.textContent = "🔥 Cháy";
     chay.className = "sensor co_chay";
     canhbao.classList.add("shake");
