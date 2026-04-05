@@ -1,12 +1,442 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-<title>Smart Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMARTHOME</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body{
+  min-height:100vh;
+  margin:0;
+  font-family:'Segoe UI',Arial,sans-serif;
+  text-align:center;
+  padding-top:20px;
+  background:linear-gradient(270deg,#e0f2fe,#fef9c3,#dcfce7);
+  background-size:300% 300%;
+  animation:bgMove 12s ease infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.title{
+    margin-top: 30px;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: #020617;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(56,189,248,0.5);
+}
+
+.dashboard{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  padding-bottom:40px;
+}
+
+.box{
+  width:300px;
+  height:300px;
+  border-radius:20px;
+  background:rgba(255,255,255,.6);
+  backdrop-filter:blur(10px);
+  box-shadow:0 25px 60px rgba(0,0,0,.2);
+  transition: transform 0.3s;
+  position:relative;
+}
+  .box:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+    }
+.box-title{
+  font-size:25px;
+  margin-bottom:30px;
+}
+
+.sensor{
+  position:absolute;
+  left:25px;
+  width:250px;
+  height:60px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  font-weight:600;
+  background:#e5e7eb;
+}
+
+#tempbox{top:90px}
+#humbox{top:160px}
+#lightsensor{top:90px}
+#led1{top:160px}
+#rainsensor{top:90px}
+#cayphoi{top:160px}
+#tiemcan{top:90px}
+#chay{top:160px}
+
+/* ánh sáng */
+/* ===== TRỜI SÁNG ===== */
+.light-sang {
+  background: linear-gradient(135deg, #fde68a, #fbbf24);
+  color: #92400e;
+  box-shadow:
+    0 0 12px rgba(251, 191, 36, 0.8),
+    0 0 25px rgba(251, 191, 36, 0.6);
+  transition: all 0.4s ease;
+}
+
+/* ===== TRỜI TỐI ===== */
+.light-toi {
+  background: linear-gradient(135deg, #1f2937, #111827);
+  color: #e5e7eb;
+  box-shadow:
+    0 0 15px rgba(99, 102, 241, 0.7),
+    0 0 30px rgba(99, 102, 241, 0.5);
+  transition: all 0.4s ease;
+}
+#led-text{
+  font-weight: 600;      
+}
+#fan-text{
+  font-weight: 600;  
+}
+
+/* ===== NẮNG ===== */
+.nang {
+  background: linear-gradient(135deg, #facc15, #fb923c);
+  color: #78350f;
+  box-shadow:
+    0 0 10px rgba(250, 204, 21, 0.8),
+    0 0 22px rgba(251, 146, 60, 0.6);
+  transition: all 0.4s ease;
+}
+
+/* ===== MƯA ===== */
+.mua {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #f0f9ff;
+  box-shadow:
+    0 0 12px rgba(56, 189, 248, 0.8),
+    0 0 25px rgba(14, 165, 233, 0.6);
+  transition: all 0.4s ease;
+}
+
+
+/* công tắc */
+.switch-box{
+  margin: 20px auto;
+  width:220px;
+  height:30px;
+  padding:15px;
+  border-radius:16px;
+  background:#e5e7eb;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.switch{
+  width:60px;
+  height:32px;
+  position:relative;
+}
+.switch input{display:none}
+.slider{
+  position:absolute;
+  inset:0;
+  background:#374151;
+  border-radius:32px;
+}
+.slider::before{
+  content:"";
+  width:24px;
+  height:24px;
+  background:white;
+  border-radius:50%;
+  position:absolute;
+  left:4px;
+  bottom:4px;
+  transition:.4s;
+}
+input:checked+.slider{
+  background:linear-gradient(135deg,#1de459,#0f850b);
+}
+input:checked+.slider::before{
+  transform:translateX(28px);
+}
+
+/* người */
+.co_ng{
+  background:linear-gradient(135deg,#86efac,#22c55e);
+}
+.ko_ng{
+  background:linear-gradient(135deg,#e5e7eb,#9ca3af);
+}
+
+/* cháy */
+.co_chay{
+  background:linear-gradient(135deg,#fecaca,#ef4444);
+  color:#7f1d1d;
+  box-shadow:0 0 25px rgba(239,68,68,.9);
+}
+.ko_chay{
+  background:linear-gradient(135deg,#e5e7eb,#9ca3af);
+}
+
+/* rung box */
+.shake{
+  animation:shake .4s infinite;
+}
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(-3px)}
+  50%{transform:translate(3px)}
+  75%{transform:translate(-3px)}
+  100%{transform:translate(0)}
+}
+
+/* popup cháy */
+.fire-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.fire-popup.active{display:flex}
+.fire-box{
+  background:linear-gradient(135deg,#fecaca,#ef4444);
+  padding:30px 40px;
+  border-radius:20px;
+  font-size:22px;
+  font-weight:800;
+  box-shadow:0 0 40px rgba(239,68,68,1);
+}
+
+@media (max-width: 768px){
+
+  body{
+    padding-top: 10px;
+  }
+
+  .title{
+    font-size: 32px;
+    margin-top: 20px;
+  }
+
+  .dashboard{
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .box{
+    width: 90%;
+    max-width: 360px;
+    height: auto;
+    min-height: 260px;
+    padding-bottom: 20px;
+  }
+  .box:hover {
+    transform: none;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+  }
+  .sensor{
+    width: calc(100% - 40px);
+    left: 20px;
+    font-size: 16px;
+  }
+
+  .switch-box{
+    width: calc(100% - 80px);
+    height: 40px;
+  }
+}
+</style>
 </head>
 
 <body>
-<h1>SMART HOME</h1>
-<p>Welcome to my Smart Home project</p>
-</body>
+<h1 class="title"><i class="fa-solid fa-house-signal"></i> Smart Home</h1>
 
-</html>
+<div class="dashboard">
+
+<div class="box">
+  <h4 class="box-title">⛅️ Nhiệt độ</h4>
+  <div id="tempbox" class="sensor">🌡️ Nhiệt độ: <span id="temp">--</span> °C</div>
+  <div id="humbox" class="sensor">💦 Độ ẩm: <span id="hum">--</span> %</div>
+</div>
+
+<div class="box">
+  <h4 class="box-title">Ngày🌞/Đêm🌚</h4>
+  <div id="lightsensor" class="sensor light-sang">🌞 Sáng</div>
+  <div id="led1" class="sensor">💡 ĐÈN TẮT</div>
+</div>
+
+<div class="box">
+  <h4 class="box-title">Mưa🌧️/ Nắng☀️</h4>
+  <div id="rainsensor" class="sensor mua">🌧️ Mưa</div>
+  <div id="cayphoi" class="sensor">🧺 CẤT ĐỒ</div>
+</div>
+
+<div class="box">
+  <h4 class="box-title">🔘 Công Tắc</h4>
+
+  <!-- ĐÈN -->
+  <div class="switch-box">
+    <span id="led-text">💡 ĐÈN TẮT</span>
+    <label class="switch">
+      <input type="checkbox" onchange="toggleLed(this)">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- QUẠT -->
+  <div class="switch-box">
+    <span id="fan-text">🌀 QUẠT TẮT</span>
+    <label class="switch">
+      <input type="checkbox" onchange="toggleFan(this)">
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<div id="canhbao" class="box">
+  <h4 class="box-title">🚨 CẢNH BÁO</h4>
+  <div id="tiemcan" class="sensor ko_ng">🚫 Không người</div>
+  <div id="chay" class="sensor ko_chay">🍃 Không cháy</div>
+</div>
+
+</div>
+
+<div id="firePopup" class="fire-popup">
+  <div class="fire-box">🚨🔥 PHÁT HIỆN CHÁY!<br>KIỂM TRA NGAY!</div>
+</div>
+
+<!-- ===== FIREBASE ===== -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+/* ===== CẤU HÌNH FIREBASE ===== */
+const firebaseConfig = {
+  apiKey: "AIzaSyAJ22RAG7_eALYU-3RMsIGEGP-XkSFtDcE",
+  authDomain: "smart-home-esp32-75ece.firebaseapp.com",
+  databaseURL: "https://smart-home-esp32-75ece-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "smart-home-esp32-75ece",
+  storageBucket: "smart-home-esp32-75ece.appspot.com",
+  messagingSenderId: "14606547699",
+  appId: "1:14606547699:web:aed751a13e1a9bca9c1586",
+  measurementId: "G-YBHVR17MXP"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const sensorRef = database.ref("sensor");
+const controlRef = database.ref("control");  
+
+/* ===== LẤY PHẦN TỬ HTML ===== */
+const temp       = document.getElementById("temp");
+const hum        = document.getElementById("hum");
+const lightSensor= document.getElementById("lightsensor");
+const led1Text  = document.getElementById("led1");
+const rainSensor = document.getElementById("rainsensor");
+const rainText   = document.getElementById("cayphoi");
+const tiemcan    = document.getElementById("tiemcan");
+const chay       = document.getElementById("chay");
+const canhbao    = document.getElementById("canhbao");
+const firePopup  = document.getElementById("firePopup");
+const ledText = document.getElementById("led-text");
+const fanText = document.getElementById("fan-text");
+
+
+/* ===== NHẬN DỮ LIỆU REALTIME ===== */
+sensorRef.on("value", (snapshot) => {
+  const data = snapshot.val();
+  if (!data) return;
+
+  /* === NHIỆT ĐỘ - ĐỘ ẨM === */
+  temp.textContent = data.temp;
+  hum.textContent  = data.hum;
+
+  /* === NGÀY / ĐÊM === */
+  if (data.light == 1) {
+    lightSensor.textContent = "🌚 Tối";
+    lightSensor.classList.remove("light-sang");
+    lightSensor.classList.add("light-toi");
+  } else {
+    lightSensor.textContent = "🌞 Sáng";
+    lightSensor.classList.remove("light-toi");
+    lightSensor.classList.add("light-sang");
+  }
+
+  /* === MƯA / NẮNG === */
+  if (data.rain == 1) {
+    rainSensor.textContent = "🌧️ Mưa";
+    rainSensor.classList.remove("nang");
+    rainSensor.classList.add("mua");
+    rainText.textContent = "🧺 CẤT ĐỒ";
+  } else {
+    rainSensor.textContent = "☀️ Nắng";
+    rainSensor.classList.remove("mua");
+    rainSensor.classList.add("nang");
+    rainText.textContent = "👕 PHƠI ĐỒ";
+  }
+
+  /* === PHÁT HIỆN NGƯỜI === */
+  if (data.tiemcan == 1) {
+    tiemcan.textContent = "👤 Có người";
+    tiemcan.className = "sensor co_ng";
+  } else {
+    tiemcan.textContent = "🚫 Không người";
+    tiemcan.className = "sensor ko_ng";
+  }
+
+  /* === CẢNH BÁO CHÁY === */
+  if (data.chay == 1) {
+    chay.textContent = "🔥 Cháy";
+    chay.className = "sensor co_chay";
+    canhbao.classList.add("shake");
+    firePopup.classList.add("active");
+  } else {
+    chay.textContent = "🍃 Không cháy";
+    chay.className = "sensor ko_chay";
+    canhbao.classList.remove("shake");
+    firePopup.classList.remove("active");
+  }
+
+  if(data.led1 == 1){
+    led1Text.textContent = "💡 ĐÈN BẬT";
+  }
+  else{
+    led1Text.textContent = "💡 ĐÈN TẮT";
+  }
+});
+
+/* ===== ĐIỀU KHIỂN ĐÈN ===== */
+function toggleLed(el){
+  const state = el.checked ? 1 : 0;
+  ledText.textContent = state ? "💡 ĐÈN BẬT" : "💡 ĐÈN TẮT";
+
+  database.ref("control/led").set(state);
+}
+
+/* ===== ĐIỀU KHIỂN QUẠT ===== */
+function toggleFan(el){
+  const state = el.checked ? 1 : 0;
+  fanText.textContent = state ? "🌀 QUẠT BẬT" : "🌀 QUẠT TẮT";
+
+  database.ref("control/fan").set(state);
+}
+</script>
